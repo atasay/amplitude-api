@@ -19,6 +19,18 @@ class AmplitudeAPI
     # @!attribute [ rw ] ip
     #   @return [ String ] IP address of the user
     attr_accessor :ip
+    # @!attribute [ rw ] price
+    #   @return [ Float ] Price of the item purchased
+    attr_accessor :price
+    # @!attribute [ rw ] quantity
+    #   @return [ Integer ] Quantity of the item purchased
+    attr_accessor :quantity
+    # @!attribute [ rw ] revenueType
+    #   @return [ String ] Type of revenue
+    attr_accessor :revenueType
+    # @!attribute [ rw ] productId
+    #   @return [ String ] An identifier for the product
+    attr_accessor :productId
 
     # Create a new Event
     #
@@ -34,6 +46,10 @@ class AmplitudeAPI
       self.user_properties = options.fetch(:user_properties, {})
       self.time = options[:time]
       self.ip = options.fetch(:ip, '')
+      self.price = options[:price]
+      self.quantity = options[:quantity]
+      self.revenueType = options[:revenueType]
+      self.productId = options[:productId]
     end
 
     def user_id=(value)
@@ -56,6 +72,10 @@ class AmplitudeAPI
       serialized_event[:user_properties] = user_properties
       serialized_event[:time] = formatted_time if time
       serialized_event[:ip] = ip if ip
+      serialized_event[:price] = price if price
+      serialized_event[:quantity] = quantity if quantity
+      serialized_event[:revenueType] = revenueType if revenueType
+      serialized_event[:productId] = productId if productId
       serialized_event
     end
 
